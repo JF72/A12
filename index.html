@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+  let user = getCookie("username");
+  if (user != "") {
+    alert("Welcome back " + user + ", we missed you!");
+  } else {
+     user = prompt("Please enter your name:","");
+     if (user != "" && user != null) {
+       setCookie("username", user, 30);
+     }
+  }
+}
+</script>
+<style>
+footer p {
+	text-align: center;
+	padding: 1em 0;
+}
+p{
+    font-size: 20px;
+}
+body{
+    background-color: ghostwhite;
+}
+</style>
+</head>
+
+<body onload="checkCookie()">
+<h1> Hello anyone who sees this</h1>
+<p>Cookies are used on websites to store user information to reference when or if the user comes back. Examples of cookie usage include remembering login information, targeted ads, or previously purchased items. A major negative effect of cookies is the concern for privacy that comes with them. When websites ask for cookies they don’t specify exactly what all the cookies will be used for which causes concern to many users. Along with that, if the website is compromised then user-sensitive information can be accessed by anyone which is dangerous. A pro of using cookies is user personalization which makes the web experience more enjoyable. If the website requires you to log in, allowing cookies makes it significantly faster as it stores your login information. </p>
+<p>The usage of cookies being ethical is a complex question as it is different for everyone. When viewing it in a broad spectrum, the usage of cookies is ethical as long as it is clear to everyone what is being used. However, some websites may not be explicitly clear on what cookies are being used for which is cause for concern. In my view, cookies are ethical as long as they state what they are being used for, but users should acknowledge the risk that also comes with them.</p>
+    <footer>
+		<p>&copy; Jason Fernandez, April 11th, 2023</p>
+	</footer>
+</body>
+
+</html>
